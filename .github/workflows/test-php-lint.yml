@@ -13,13 +13,25 @@ on:
 
 
 jobs:
-  build:
+  lint-php74:
     runs-on: ubuntu-latest
 
     steps:
-#      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - uses: overtrue/phplint@7.4
+        with:
+          path: .
+          options: --exclude=*.log
+
+
+  lint-php80:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: overtrue/phplint@8.0
         with:
           path: .
           options: --exclude=*.log
