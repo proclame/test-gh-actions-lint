@@ -1,38 +1,15 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-
 jobs:
-  lint-php74:
+  test-codesniffer:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
 
-      - uses: overtrue/phplint@7.4
-        with:
-          path: .
-          options: --exclude=*.log
-
-
-  lint-php80:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: overtrue/phplint@8.0
-        with:
-          path: .
-          options: --exclude=*.log
-
+      - name: php-codesniffer
+        uses: pipeline-components/php-codesniffer@v0.12.3
